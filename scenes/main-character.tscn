@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://cfsaqgovd8yib"]
+
+[ext_resource type="Texture2D" uid="uid://bqasuej7dxn64" path="res://assets/Sprites/Characters/Default/character_pink_walk_a.png" id="1_2bvn2"]
+[ext_resource type="Script" uid="uid://bhw716kjnrw5x" path="res://scenes/main_character.gd" id="1_eq8xf"]
+[ext_resource type="Texture2D" uid="uid://by6158j3whp8h" path="res://assets/weapons/Soldier-Sword-PNG-Picture.png" id="3_uov2w"]
+[ext_resource type="AudioStream" uid="uid://bllepxfr6cx57" path="res://audio/574820__wesleyextreme_gamer__slash2.wav" id="4_5ducj"]
+[ext_resource type="Script" uid="uid://coumyalkeqaj7" path="res://scenes/hit_box.gd" id="5_hexkd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(86, 97)
+
+[sub_resource type="Animation" id="Animation_5ducj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(91, 537)]
+}
+
+[sub_resource type="Animation" id="Animation_uov2w"]
+resource_name = "slash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(100, 559), Vector2(110, 559), Vector2(100, 559)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ducj"]
+_data = {
+&"RESET": SubResource("Animation_5ducj"),
+&"slash": SubResource("Animation_uov2w")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ducj"]
+size = Vector2(5.46875, 6)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_eq8xf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(46, 530)
+texture = ExtResource("1_2bvn2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(47, 543.5)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="WeaponSprite" type="Sprite2D" parent="Weapon"]
+position = Vector2(91, 537)
+scale = Vector2(0.0527174, 0.198392)
+texture = ExtResource("3_uov2w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon"]
+libraries = {
+&"": SubResource("AnimationLibrary_5ducj")
+}
+
+[node name="SlashSound" type="AudioStreamPlayer2D" parent="Weapon"]
+stream = ExtResource("4_5ducj")
+
+[node name="HitBox" type="Area2D" parent="Weapon"]
+collision_layer = 2
+script = ExtResource("5_hexkd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon/HitBox"]
+position = Vector2(119, 560)
+shape = SubResource("RectangleShape2D_5ducj")

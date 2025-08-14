@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn1kadryaxho6"]
+
+[ext_resource type="Texture2D" uid="uid://5r3rcy6em8yd" path="res://assets/Sprites/Enemies/Default/mouse_walk_a.png" id="1_h3cxu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3cxu"]
+size = Vector2(64.5, 48.5)
+
+[node name="CharacterBody2D2" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(914, 562)
+texture = ExtResource("1_h3cxu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(913.75, 570.75)
+shape = SubResource("RectangleShape2D_h3cxu")

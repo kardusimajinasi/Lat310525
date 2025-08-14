@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfsaqgovd8yib"]
+
+[ext_resource type="Texture2D" uid="uid://bqasuej7dxn64" path="res://assets/Sprites/Characters/Default/character_pink_walk_a.png" id="1_2bvn2"]
+[ext_resource type="Script" uid="uid://bhw716kjnrw5x" path="res://scenes/main_character.gd" id="1_eq8xf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(86, 97)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_eq8xf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(46, 530)
+texture = ExtResource("1_2bvn2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(47, 543.5)
+shape = SubResource("RectangleShape2D_h2yge")
